@@ -10,9 +10,11 @@
   <name>XORNeuralNetwork_2neurons_2layers</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
+<properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+</properties>
 
   <dependencies>
     <dependency>
@@ -26,15 +28,28 @@
     <dependency>
         <groupId>org.deeplearning4j</groupId>
         <artifactId>deeplearning4j-core</artifactId>
-        <version>1.0.0-beta7</version>
+        <version>1.0.0-M2</version>
     </dependency>
+    
+    <dependency>
+    	<groupId>org.deeplearning4j</groupId>
+    	<artifactId>deeplearning4j-datasets</artifactId>
+    	<version>1.0.0-M2</version>
+	</dependency>
+
 
     <!-- ND4J Backend (CPU) -->
     <dependency>
         <groupId>org.nd4j</groupId>
         <artifactId>nd4j-native-platform</artifactId>
-        <version>1.0.0-beta7</version>
+        <version>1.0.0-M2</version>
     </dependency>
+    
+    <dependency>
+    	<groupId>org.nd4j</groupId>
+    	<artifactId>nd4j-api</artifactId>
+    	<version>1.0.0-M2</version>
+	</dependency>
 
     <!-- SLF4J (Logging, optionnel) -->
     <dependency>
@@ -49,5 +64,11 @@
         <artifactId>slf4j-simple</artifactId>
         <version>1.7.36</version>
     </dependency>
+    
+    <dependency>
+    <groupId>org.datavec</groupId>
+    <artifactId>datavec-api</artifactId>
+    <version>1.0.0-M2</version>
+</dependency>
   </dependencies>
 </project>

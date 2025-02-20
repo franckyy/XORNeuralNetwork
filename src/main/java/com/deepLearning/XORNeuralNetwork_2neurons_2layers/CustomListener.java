@@ -7,44 +7,30 @@ import java.util.Map;
 import org.deeplearning4j.nn.api.Model;
 import org.deeplearning4j.optimize.api.TrainingListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.dataset.api.MultiDataSet;
 
 public class CustomListener implements TrainingListener{
-	 private List<Double> scoreHistory = new ArrayList<>();
+	private final List<Double> scoreHistory = new ArrayList<>();
 
     @Override
     public void iterationDone(Model model, int iteration, int epoch) {
         double score = model.score();
         scoreHistory.add(score);
-        System.out.println("Epoch " + epoch + " | Iteration " + iteration + " | Score: " + score);
+        System.out.println("Iteration " + iteration + " - Score: " + score);
     }
 
     public List<Double> getScoreHistory() {
         return scoreHistory;
     }
 
-	@Override
-	public void onEpochStart(Model model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onEpochEnd(Model model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onForwardPass(Model model, List<INDArray> activations) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onForwardPass(Model model, Map<String, INDArray> activations) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void onEpochStart(Model model) {}
+    @Override
+    public void onEpochEnd(Model model) {}
+    @Override
+    public void onForwardPass(Model model, List<INDArray> activations) {}
+    @Override
+    public void onBackwardPass(Model model) {}
 
 	@Override
 	public void onGradientCalculation(Model model) {
@@ -53,7 +39,7 @@ public class CustomListener implements TrainingListener{
 	}
 
 	@Override
-	public void onBackwardPass(Model model) {
+	public void onForwardPass(Model model, Map<String, INDArray> activations) {
 		// TODO Auto-generated method stub
 		
 	}

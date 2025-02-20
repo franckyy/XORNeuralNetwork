@@ -78,7 +78,15 @@ public class XORNeuralNetwork {
             iterator.reset();
             model.fit(iterator);
         }
-
+        
+        // Récupère l'historique des scores après l'entraînement
+        List<Double> scores = listener.getScoreHistory();
+        
+        // Passe les scores à ScorePlot
+        ScorePlot.scores = scores;
+        
+        ScorePlot.main(new String[]{});
+        
         // 4. Test du modèle
         System.out.println("\n=== TEST DU MODÈLE ===");
         INDArray testInput = input;

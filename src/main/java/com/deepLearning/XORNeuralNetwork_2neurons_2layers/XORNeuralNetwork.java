@@ -46,20 +46,20 @@ public class XORNeuralNetwork {
                 .seed(123) // Pour la reproductibilité
                 .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                 .weightInit(WeightInit.XAVIER)
-                .updater(new org.nd4j.linalg.learning.config.Sgd(0.1)) // Taux d'apprentissage
+                .updater(new org.nd4j.linalg.learning.config.Sgd(0.5)) // Taux d'apprentissage
                 .list()
                 .layer(0, new DenseLayer.Builder()
                         .nIn(2) // 2 entrées
-                        .nOut(2) // 2 neurones dans la première couche cachée
-                        .activation(Activation.RELU) // Fonction d'activation ReLU
+                        .nOut(8) // 2 neurones dans la première couche cachée
+                        .activation(Activation.TANH) // Fonction d'activation ReLU
                         .build())
                 .layer(1, new DenseLayer.Builder()
                         .nIn(2) // 2 entrées (de la couche précédente)
-                        .nOut(2) // 2 neurones dans la deuxième couche cachée
-                        .activation(Activation.RELU) // ReLU encore
+                        .nOut(8) // 2 neurones dans la deuxième couche cachée
+                        .activation(Activation.TANH) // ReLU encore
                         .build())
                 .layer(2, new OutputLayer.Builder()
-                        .nIn(2) // 2 entrées (de la dernière couche cachée)
+                        .nIn(8) // 2 entrées (de la dernière couche cachée)
                         .nOut(1) // 1 sortie
                         .activation(Activation.SIGMOID) // Sigmoïde pour classification binaire
                         .lossFunction(LossFunctions.LossFunction.XENT) // Entropie croisée
@@ -71,7 +71,7 @@ public class XORNeuralNetwork {
         model.init();
         model.setListeners(new ScoreIterationListener(100));
 
-        int epochs = 5000; // Nombre d'itérations d'entraînement
+        int epochs = 20000; // Nombre d'itérations d'entraînement
         for (int i = 0; i < epochs; i++) {
             iterator.reset();
             model.fit(iterator);

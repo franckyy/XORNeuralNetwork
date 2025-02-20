@@ -69,7 +69,9 @@ public class XORNeuralNetwork {
         // 3. Initialisation et entraînement du modèle
         org.deeplearning4j.nn.multilayer.MultiLayerNetwork model = new org.deeplearning4j.nn.multilayer.MultiLayerNetwork(config);
         model.init();
-        model.setListeners(new ScoreIterationListener(100));
+
+    	CustomListener listener = new CustomListener();
+    	model.setListeners(listener);
 
         int epochs = 20000; // Nombre d'itérations d'entraînement
         for (int i = 0; i < epochs; i++) {

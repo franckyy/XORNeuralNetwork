@@ -73,7 +73,7 @@ public class XORNeuralNetwork {
     	CustomListener listener = new CustomListener();
     	model.setListeners(listener);
 
-        int epochs = 20000; // Nombre d'itérations d'entraînement
+        int epochs = 10000; // Nombre d'itérations d'entraînement
         for (int i = 0; i < epochs; i++) {
             iterator.reset();
             model.fit(iterator);

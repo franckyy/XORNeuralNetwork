@@ -11,12 +11,16 @@ import org.nd4j.linalg.dataset.api.MultiDataSet;
 
 public class CustomListener implements TrainingListener{
 	private final List<Double> scoreHistory = new ArrayList<>();
-
+	private int iterationCount = 0;
+	
     @Override
     public void iterationDone(Model model, int iteration, int epoch) {
-        double score = model.score();
-        scoreHistory.add(score);
-        System.out.println("Iteration " + iteration + " - Score: " + score);
+    	if (iterationCount % 10 == 0) { // Enregistrer toutes les 10 itérations
+            double score = model.score();
+            scoreHistory.add(score);
+            System.out.println("Epoch " + epoch + ", Iteration " + iteration + " - Score: " + score);
+        }
+    	iterationCount++;
     }
 
     public List<Double> getScoreHistory() {
